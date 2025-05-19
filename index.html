@@ -7,66 +7,72 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Top Wave (only at the top, scrolls away) -->
+    <div id="wave-top" class="wave"></div>
+    <!-- Bubbles (auto-generated) -->
+    <div id="bubble-container"></div>
+    <!-- Fish (auto-generated) -->
+    <div id="fish-container"></div>
+
     <header>
         <h1>CSAR VR Training Project</h1>
         <p class="subtitle">Immersive Safety & System Practice in Virtual Reality</p>
+        <nav>
+            <a href="#about" class="ripple">About</a>
+            <a href="#gallery" class="ripple">Gallery</a>
+            <a href="#video" class="ripple">Video</a>
+            <a href="#contact" class="ripple">Contact</a>
+        </nav>
     </header>
 
-    <nav>
-        <a href="#about">About</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#video">Video</a>
-        <a href="#contact">Contact</a>
-    </nav>
+    <main>
+        <section id="about" class="fade-in">
+            <h2>About</h2>
+            <p>
+                CSAR is a VR training platform for simulating safe equipment operation, facility walkthroughs, and aquaculture system learning.<br>
+                Key features: interactive VR onboarding, guided practice, equipment assessment, and feedback.
+            </p>
+        </section>
 
-    <section id="about">
-        <h2>About</h2>
-        <p>
-            CSAR is a VR training platform for simulating safe equipment operation, facility walkthroughs, and aquaculture system learning. 
-            <br>
-            Key features: interactive VR onboarding, guided practice, equipment assessment, and feedback.
-        </p>
-        <!-- Add more as needed -->
-    </section>
+        <section id="flow" class="fade-in">
+            <h2>System Flow</h2>
+            <img src="img/your_flowchart.png" alt="System Flow Diagram" class="diagram">
+        </section>
 
-    <section id="flow">
-        <h2>System Flow</h2>
-        <img src="img/your_flowchart.png" alt="System Flow Diagram" class="diagram">
-        <!-- Add more diagrams/screens as images -->
-    </section>
+        <section id="gallery" class="fade-in">
+            <h2>Gallery</h2>
+            <div class="gallery-grid">
+                <img src="img/screenshot1.png" alt="Screenshot 1" onclick="openLightbox(this)">
+                <img src="img/screenshot2.png" alt="Screenshot 2" onclick="openLightbox(this)">
+            </div>
+            <div id="lightbox" onclick="closeLightbox()">
+                <img id="lightbox-img" src="#" alt="Expanded Screenshot">
+            </div>
+        </section>
 
-    <section id="gallery">
-        <h2>Gallery</h2>
-        <div class="gallery-grid">
-            <img src="img/screenshot1.png" alt="Screenshot 1" onclick="openLightbox(this)">
-            <img src="img/screenshot2.png" alt="Screenshot 2" onclick="openLightbox(this)">
-            <!-- Add more images -->
-        </div>
-        <div id="lightbox" onclick="closeLightbox()">
-            <img id="lightbox-img" src="#" alt="Expanded Screenshot">
-        </div>
-    </section>
+        <section id="video" class="fade-in">
+            <h2>Demo Video</h2>
+            <div class="video-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/your_video_id"
+                    title="Demo Video" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </section>
 
-    <section id="video">
-        <h2>Demo Video</h2>
-        <!-- Embed a YouTube/Vimeo video or local MP4 -->
-        <div class="video-container">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/your_video_id" 
-                title="Demo Video" frameborder="0" allowfullscreen></iframe>
-        </div>
-    </section>
+        <section id="contact" class="fade-in">
+            <h2>Contact / Credits</h2>
+            <p>
+                For more info, questions, or collaborations:<br>
+                <a href="mailto:your@email.com">your@email.com</a>
+            </p>
+            <p>
+                Project by [Your Name/Team].<br>
+                View source on <a href="https://github.com/your-repo-link" target="_blank">GitHub</a>.
+            </p>
+        </section>
+    </main>
 
-    <section id="contact">
-        <h2>Contact / Credits</h2>
-        <p>
-            For more info, questions, or collaborations:<br>
-            <a href="mailto:your@email.com">your@email.com</a>
-        </p>
-        <p>
-            Project by [Your Name/Team].<br>
-            View source on <a href="https://github.com/your-repo-link" target="_blank">GitHub</a>.
-        </p>
-    </section>
+    <!-- Bottom Wave (always fixed to the bottom) -->
+    <div id="wave-bottom" class="wave"></div>
 
     <footer>
         &copy; 2024 CSAR Project. All rights reserved.

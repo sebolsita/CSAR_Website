@@ -1,63 +1,134 @@
 :root {
-    --main-color: #FFB300;
-    --bg-color: #12181b;
-    --text-color: #fff;
-    --accent: #f8f8f8;
+    --main-color: #16b3c2;
+    --accent: #56e0c2;
+    --deep-bg: #102a43;
+    --text-color: #f4f8fb;
+    --sand: #ffeab5;
+    --bubble: #70ffe2;
 }
 
+/* --- Layout --- */
 body {
     margin: 0;
     font-family: 'Segoe UI', Arial, sans-serif;
-    background: var(--bg-color);
+    background: linear-gradient(135deg, var(--deep-bg) 0%, #16416b 100%);
     color: var(--text-color);
-    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
 }
 
+/* --- Waves --- */
+.wave {
+    left: 0;
+    width: 100vw;
+    min-width: 100vw;
+    pointer-events: none;
+    background-size: cover;
+    background-repeat: repeat-x;
+}
+#wave-top {
+    position: absolute;
+    top: 0;
+    height: 230px;
+    background: url('data:image/svg+xml;utf8,<svg width="3000" height="230" xmlns="http://www.w3.org/2000/svg"><path d="M0,110 Q750,230 1500,110 T3000,110 V230 H0Z" fill="%2316b3c2" fill-opacity="0.7"/><path d="M0,190 Q750,170 1500,190 T3000,150 V230 H0Z" fill="%2356e0c2" fill-opacity="0.38"/></svg>');
+    z-index: 1;
+}
+#wave-bottom {
+    position: fixed;
+    bottom: 0;
+    height: 170px;
+    background: url('data:image/svg+xml;utf8,<svg width="3000" height="170" xmlns="http://www.w3.org/2000/svg"><path d="M0,80 Q750,0 1500,80 T3000,80 V170 H0Z" fill="%2316b3c2" fill-opacity="0.75"/><path d="M0,130 Q750,120 1500,130 T3000,110 V170 H0Z" fill="%2356e0c2" fill-opacity="0.38"/></svg>');
+    z-index: 101;
+}
+
+/* --- Header & Nav --- */
 header {
     text-align: center;
-    padding: 2em 1em 1em 1em;
-    background: var(--main-color);
-    color: #212121;
+    padding: 3.5em 1em 1.5em 1em;
+    color: #fff;
+    position: relative;
+    z-index: 20;
+    background: none;
 }
-
 header h1 {
     margin: 0 0 0.3em 0;
     font-size: 2.2em;
     font-weight: 800;
+    letter-spacing: 1px;
 }
 .subtitle {
     font-size: 1.1em;
     font-weight: 500;
+    margin-bottom: 0.7em;
 }
 
 nav {
     display: flex;
     justify-content: center;
     gap: 2em;
-    background: #191919;
-    padding: 0.7em 0;
+    background: rgba(16,52,86,0.93);
+    padding: 0.8em 0;
+    border-radius: 18px;
+    margin-top: 2em;
+    position: sticky;
+    top: 0;
+    z-index: 120;
+    box-shadow: 0 2px 14px #0003;
 }
-
 nav a {
-    color: var(--main-color);
+    color: var(--accent);
     text-decoration: none;
     font-weight: 600;
-    transition: color 0.2s;
+    transition: color 0.22s;
+    position: relative;
+    overflow: hidden;
+    padding: 0.2em 1.1em;
+    border-radius: 4px;
 }
 nav a:hover {
-    color: #fff;
+    color: var(--sand);
+    background: rgba(22,179,194,0.08);
+}
+.ripple {
+    position: relative;
+    overflow: hidden;
+}
+.ripple:after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    width: 10px; height: 10px;
+    left: 50%; top: 50%;
+    pointer-events: none;
+    background: rgba(255,255,255,0.45);
+    transform: scale(0);
+    transition: transform 0.5s, opacity 1s;
+    opacity: 0.5;
+}
+.ripple.active:after {
+    transform: scale(8);
+    opacity: 0;
+    transition: 0.7s;
 }
 
+/* --- Main --- */
+main {
+    margin: 0 auto;
+    max-width: 950px;
+    z-index: 30;
+    position: relative;
+}
 section {
-    padding: 2em 5vw;
-    max-width: 900px;
-    margin: auto;
+    padding: 2.2em 2vw;
+    background: transparent;
 }
 h2 {
     border-left: 6px solid var(--main-color);
     padding-left: 0.6em;
     margin-bottom: 0.7em;
     font-weight: 700;
+    letter-spacing: 0.5px;
 }
 .gallery-grid {
     display: grid;
@@ -70,26 +141,36 @@ h2 {
     border-radius: 8px;
     cursor: pointer;
     box-shadow: 0 3px 15px #0007;
-    transition: transform 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 .gallery-grid img:hover {
-    transform: scale(1.05);
+    transform: scale(1.08) rotate(-1deg);
+    box-shadow: 0 10px 32px #000b;
     z-index: 1;
 }
 #lightbox {
     display: none;
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.9);
+    background: rgba(10,35,50,0.96);
     align-items: center;
     justify-content: center;
-    z-index: 999;
+    z-index: 1000;
+    animation: fadeIn 0.3s;
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 #lightbox img {
     max-width: 90vw;
     max-height: 85vh;
     border-radius: 12px;
     box-shadow: 0 8px 30px #000b;
+    transition: transform 0.2s;
+}
+#lightbox img:active {
+    transform: scale(0.97);
 }
 .diagram {
     width: 100%;
@@ -98,7 +179,6 @@ h2 {
     border-radius: 10px;
     box-shadow: 0 2px 16px #0003;
 }
-
 .video-container {
     position: relative;
     padding-bottom: 56.25%;
@@ -111,7 +191,6 @@ h2 {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
 }
-
 footer {
     text-align: center;
     background: #1a1a1a;
@@ -120,7 +199,66 @@ footer {
     padding: 1em 0;
     margin-top: 2em;
 }
-@media (max-width: 600px) {
+@media (max-width: 900px) {
+    header { padding-top: 2em; }
     section { padding: 1.1em 2vw; }
+    .gallery-grid { grid-template-columns: 1fr; }
+    #wave-top, #wave-bottom { background-size: contain !important; }
+}
+@media (max-width: 450px) {
     h1 { font-size: 1.3em; }
+}
+
+/* Fade-in on scroll */
+.fade-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(.39,.575,.565,1) 0.1s, transform 0.8s cubic-bezier(.39,.575,.565,1) 0.1s;
+}
+.fade-in.visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* --- Bubbles --- */
+#bubble-container {
+    pointer-events: none;
+    z-index: 5;
+    position: fixed;
+    left: 0; top: 0; width: 100vw; height: 100vh;
+}
+.bubble {
+    position: absolute;
+    bottom: -100px;
+    background: var(--bubble);
+    border-radius: 50%;
+    opacity: 0.18;
+    animation: bubbleUp linear infinite;
+    filter: blur(0.4px);
+}
+@keyframes bubbleUp {
+    0% { transform: translateY(0) scale(0.8);}
+    100% { transform: translateY(-110vh) scale(1.2);}
+}
+
+/* --- Fish --- */
+#fish-container {
+    pointer-events: none;
+    z-index: 55;
+    position: fixed;
+    left: 0; top: 0; width: 100vw; height: 100vh;
+}
+.fish {
+    position: fixed;
+    z-index: 56;
+    width: 55px;
+    height: 32px;
+    pointer-events: none;
+    opacity: 0.9;
+    animation: swim linear;
+}
+.fish svg {
+    width: 100%;
+    height: 100%;
+    display: block;
 }
