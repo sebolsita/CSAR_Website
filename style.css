@@ -1,0 +1,126 @@
+:root {
+    --main-color: #FFB300;
+    --bg-color: #12181b;
+    --text-color: #fff;
+    --accent: #f8f8f8;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+header {
+    text-align: center;
+    padding: 2em 1em 1em 1em;
+    background: var(--main-color);
+    color: #212121;
+}
+
+header h1 {
+    margin: 0 0 0.3em 0;
+    font-size: 2.2em;
+    font-weight: 800;
+}
+.subtitle {
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+    background: #191919;
+    padding: 0.7em 0;
+}
+
+nav a {
+    color: var(--main-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+nav a:hover {
+    color: #fff;
+}
+
+section {
+    padding: 2em 5vw;
+    max-width: 900px;
+    margin: auto;
+}
+h2 {
+    border-left: 6px solid var(--main-color);
+    padding-left: 0.6em;
+    margin-bottom: 0.7em;
+    font-weight: 700;
+}
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1em;
+    margin-top: 1em;
+}
+.gallery-grid img {
+    width: 100%;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 3px 15px #0007;
+    transition: transform 0.2s;
+}
+.gallery-grid img:hover {
+    transform: scale(1.05);
+    z-index: 1;
+}
+#lightbox {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.9);
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+#lightbox img {
+    max-width: 90vw;
+    max-height: 85vh;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px #000b;
+}
+.diagram {
+    width: 100%;
+    max-width: 800px;
+    margin: 1em 0;
+    border-radius: 10px;
+    box-shadow: 0 2px 16px #0003;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px #0006;
+}
+.video-container iframe {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+}
+
+footer {
+    text-align: center;
+    background: #1a1a1a;
+    color: #eee;
+    font-size: 0.96em;
+    padding: 1em 0;
+    margin-top: 2em;
+}
+@media (max-width: 600px) {
+    section { padding: 1.1em 2vw; }
+    h1 { font-size: 1.3em; }
+}
