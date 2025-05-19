@@ -7,24 +7,32 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Top Wave (only at the top, scrolls away) -->
-    <div id="wave-top" class="wave"></div>
-    <!-- Bubbles (auto-generated) -->
-    <div id="bubble-container"></div>
-    <!-- Fish (auto-generated) -->
-    <div id="fish-container"></div>
-
-    <header>
-        <h1>CSAR VR Training Project</h1>
-        <p class="subtitle">Immersive Safety & System Practice in Virtual Reality</p>
-        <nav>
-            <a href="#about" class="ripple">About</a>
-            <a href="#gallery" class="ripple">Gallery</a>
-            <a href="#video" class="ripple">Video</a>
-            <a href="#contact" class="ripple">Contact</a>
-        </nav>
+    <!-- Banner/Header with background wave -->
+    <header id="main-header">
+        <div class="wave-bg">
+            <svg viewBox="0 0 1920 280" width="100%" height="280" preserveAspectRatio="none">
+                <path d="M0,120 Q640,250 1280,120 T1920,140 V280 H0Z" fill="#16b3c2" fill-opacity="0.7"/>
+                <path d="M0,210 Q640,180 1280,210 T1920,180 V280 H0Z" fill="#56e0c2" fill-opacity="0.35"/>
+            </svg>
+        </div>
+        <div class="banner-content">
+            <h1>CSAR VR Training Project</h1>
+            <p class="subtitle">Immersive Safety & System Practice in Virtual Reality</p>
+        </div>
     </header>
-
+    <!-- Sticky nav that matches content width -->
+    <nav id="main-nav">
+        <div class="nav-inner">
+            <a href="#about">About</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#video">Video</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+    <!-- Overlays -->
+    <div id="bubble-overlay"></div>
+    <div id="ripple-overlay"></div>
+    <!-- Main content -->
     <main>
         <section id="about" class="fade-in">
             <h2>About</h2>
@@ -33,12 +41,10 @@
                 Key features: interactive VR onboarding, guided practice, equipment assessment, and feedback.
             </p>
         </section>
-
         <section id="flow" class="fade-in">
             <h2>System Flow</h2>
             <img src="img/your_flowchart.png" alt="System Flow Diagram" class="diagram">
         </section>
-
         <section id="gallery" class="fade-in">
             <h2>Gallery</h2>
             <div class="gallery-grid">
@@ -49,7 +55,6 @@
                 <img id="lightbox-img" src="#" alt="Expanded Screenshot">
             </div>
         </section>
-
         <section id="video" class="fade-in">
             <h2>Demo Video</h2>
             <div class="video-container">
@@ -57,7 +62,6 @@
                     title="Demo Video" frameborder="0" allowfullscreen></iframe>
             </div>
         </section>
-
         <section id="contact" class="fade-in">
             <h2>Contact / Credits</h2>
             <p>
@@ -70,10 +74,13 @@
             </p>
         </section>
     </main>
-
-    <!-- Bottom Wave (always fixed to the bottom) -->
-    <div id="wave-bottom" class="wave"></div>
-
+    <!-- Bottom Wave (touches footer) -->
+    <div id="wave-bottom-container">
+        <svg id="wave-bottom-svg" width="100%" height="170" viewBox="0 0 1920 170" preserveAspectRatio="none">
+            <path d="M0,80 Q640,0 1280,80 T1920,80 V170 H0Z" fill="#16b3c2" fill-opacity="0.75"/>
+            <path d="M0,130 Q640,120 1280,130 T1920,110 V170 H0Z" fill="#56e0c2" fill-opacity="0.38"/>
+        </svg>
+    </div>
     <footer>
         &copy; 2024 CSAR Project. All rights reserved.
     </footer>
