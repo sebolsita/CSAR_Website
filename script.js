@@ -30,10 +30,18 @@ document.addEventListener("DOMContentLoaded", function() {
 // --- Responsive Bubbles ---
 (function() {
     const overlay = document.getElementById('bubble-overlay');
+    let lastWidth = window.innerWidth;
+
     function renderBubbles() {
         overlay.innerHTML = "";
         let width = window.innerWidth;
-        let numBubbles = width > 1800 ? 32 : width > 1200 ? 18 : width > 700 ? 8 : 3;
+        // More bubbles for mobile (<=700px)
+        let numBubbles = width > 1800 ? 32 :
+                         width > 1200 ? 18 :
+                         width > 700  ? 8  :
+                         /* mobile */   8; // <- change to e.g. 12 for more, or 10
+        if (width <= 700) numBubbles = 14; // ← even more on mobile if you want
+
         for (let i = 0; i < numBubbles; i++) {
             let bubble = document.createElement('div');
             bubble.className = 'bubble';
@@ -47,9 +55,18 @@ document.addEventListener("DOMContentLoaded", function() {
             overlay.appendChild(bubble);
         }
     }
+
+    // Only regenerate if width changes (not just height, like when scrolling on mobile)
+    window.addEventListener('resize', function() {
+        if (Math.abs(window.innerWidth - lastWidth) > 5) {
+            lastWidth = window.innerWidth;
+            renderBubbles();
+        }
+    });
+
     renderBubbles();
-    window.addEventListener('resize', renderBubbles);
 })();
+
 
 // --- Water Drop Ripple Effect (multi-layer) ---
 (function() {
