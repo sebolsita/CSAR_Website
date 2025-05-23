@@ -3,8 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSAR VR Project</title>
+    <title>CSAR VR Training</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        a {
+            color: #ffeab5; /* Light yellow for dark background */
+        }
+        a:hover {
+            color: #ffffff;
+        }
+        .gallery-grid-image,
+        .diagram {
+            border-radius: 8px;
+            box-shadow: 0 3px 15px #0007;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .gallery-grid-image:hover,
+        .diagram:hover {
+            transform: scale(1.08) rotate(-1deg);
+            box-shadow: 0 10px 32px #000b;
+            z-index: 1;
+        }
+    </style>
 </head>
 <body>
     <!-- Banner/Header with background wave -->
@@ -17,15 +37,19 @@
         </div>
         <div class="banner-content">
             <h1>CSAR VR Training Project</h1>
-            <p class="subtitle">Immersive Safety & System Practice in Virtual Reality</p>
+            <p class="subtitle">Immersive Aquaculture Simulation & Onboarding in Virtual Reality</p>
         </div>
     </header>
     <!-- Sticky nav that matches content width -->
     <nav id="main-nav">
         <div class="nav-inner">
             <a href="#about">About</a>
+            <a href="#flow">System Flow</a>
+            <a href="#objectives">Objectives</a>
+            <a href="#features">Features</a>
             <a href="#gallery">Gallery</a>
-            <a href="#video">Video</a>
+            <a href="#video">Demo</a>
+            <a href="#dev-insights">Dev Notes</a>
             <a href="#contact">Contact</a>
         </div>
     </nav>
@@ -34,21 +58,63 @@
     <div id="ripple-overlay"></div>
     <!-- Main content -->
     <main>
+        <!-- ABOUT -->
         <section id="about" class="fade-in">
             <h2>About</h2>
             <p>
-                CSAR is a VR training platform for simulating safe equipment operation, facility walkthroughs, and aquaculture system learning.<br>
-                Key features: interactive VR onboarding, guided practice, equipment assessment, and feedback.
+                CSAR VR is a training application built for Meta Quest 3 to simulate recirculating aquaculture systems at the Centre for Sustainable Aquatic Research.
+                It helps students understand water treatment, safety procedures, and how to operate essential equipment through interactive virtual training.
+            </p>
+            <p>
+                Developed as a university team project, it combines realistic interaction, narrative guidance, and assessment logging. Built on Unity XR, it demonstrates the power of immersive education in technical contexts.
             </p>
         </section>
-		<section id="flow" class="fade-in">
-			<h2>System Flow</h2>
-			<img src="img/your_flowchart.png" 
-			alt="System Flow Diagram" 
-			class="diagram"
-			style="cursor: zoom-in;"
-			onclick="openLightbox(this)">
-		</section>
+
+        <!-- SYSTEM FLOW -->
+        <section id="flow" class="fade-in">
+            <h2>System Flow</h2>
+            <ol>
+                <li><strong>VR Introduction</strong>: Basic movement, grab and rotate interaction</li>
+                <li><strong>Safety Gear</strong>: Equip gloves and lab coat using hand tracking</li>
+                <li><strong>System Knowledge</strong>: Guided walkthrough by NPC explaining machine logic</li>
+                <li><strong>Guided Practice</strong>: Use sliders, valves, filters, and other interactables</li>
+                <li><strong>Independent Practice</strong>: User performs tasks without prompts</li>
+                <li><strong>Scenario Resolution</strong>: Interactive quizzes and problem-solving</li>
+                <li><strong>Data Logging</strong>: Results stored using Airtable for evaluation</li>
+            </ol>
+            <img src="img/your_flowchart.png"
+                 alt="System Flow Diagram"
+                 class="diagram gallery-grid-image"
+                 style="cursor: zoom-in; display: block; margin: 1em auto; max-width: 90%;"
+                 onclick="openLightbox(this)">
+        </section>
+
+        <!-- OBJECTIVES -->
+        <section id="objectives" class="fade-in">
+            <h2>Training Objectives</h2>
+            <ul>
+                <li>Understand closed-loop aquaculture water flow and filtration</li>
+                <li>Identify functions of system components like UV filters, oxygen cones, and protein skimmers</li>
+                <li>Practice safe equipment usage through virtual PPE</li>
+                <li>Respond to virtual situations using system logic</li>
+                <li>Learn by doing — reinforced through interaction and scenario feedback</li>
+            </ul>
+        </section>
+
+        <!-- FEATURES -->
+        <section id="features" class="fade-in">
+            <h2>Key Features</h2>
+            <ul>
+                <li>👨‍🏫 Voice-guided NPC instructor with text overlay and head-following UI</li>
+                <li>🧤 Safety-first interaction model — user must gear up before proceeding</li>
+                <li>🎮 Physics-based interaction with sliders, cones, valves, and tanks</li>
+                <li>🔁 Step-based modular logic with visual debugging and coroutine syncing</li>
+                <li>📈 Airtable integration for logging quiz answers and feedback</li>
+                <li>💡 Designed for fast play (10–15 minutes) but easily expandable</li>
+            </ul>
+        </section>
+
+        <!-- GALLERY -->
         <section id="gallery" class="fade-in">
             <h2>Gallery</h2>
             <div class="gallery-grid">
@@ -59,22 +125,72 @@
                 <img id="lightbox-img" src="#" alt="Expanded Screenshot">
             </div>
         </section>
+
+        <!-- VIDEO -->
         <section id="video" class="fade-in">
             <h2>Demo Video</h2>
+            <p>
+                Curious how it all comes together? Watch our demo to see the NPC guiding the user through safety checks, equipment interaction, and scenario resolution.
+            </p>
             <div class="video-container">
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/your_video_id"
                     title="Demo Video" frameborder="0" allowfullscreen></iframe>
             </div>
         </section>
+
+        <!-- DATA & LOGIC SYSTEMS -->
+        <section id="data-system" class="fade-in">
+            <h2>Data & Interaction Systems</h2>
+            <p>This project features several modular systems that support persistence, feedback, and flexible scene logic:</p>
+            <ul>
+                <li><strong>🧠 PlayerPrefs Systems:</strong> Save/load integer, float, and string values across sessions and scenes.</li>
+                <li><strong>📝 Text File Logging:</strong> Full UI for creating folders and saving text input locally in the persistent data path.</li>
+                <li><strong>📡 Airtable Submission:</strong> Uploads quiz results from sliders to Airtable; data is verified and confirmed via feedback UI.</li>
+                <li><strong>📊 Answer Validation:</strong> Feedback canvas displays which questions were answered correctly with color-coded results.</li>
+                <li><strong>🔄 Scene & Session Control:</strong> Restart buttons, post-assessment redirection, and Yarn scene triggers are integrated.</li>
+            </ul>
+        </section>
+
+        <section id="simulation-effects" class="fade-in">
+            <h2>Simulation Logic & Visual Effects</h2>
+            <p>We simulate environmental monitoring and visual feedback through several XR-enhanced systems:</p>
+            <ul>
+                <li><strong>🌡️ Temp & pH Monitoring:</strong> XR sliders and knobs show values, control indicators, and trigger alerts.</li>
+                <li><strong>💡 Blinking Lights & Emission:</strong> DOTween animations and coroutines create blinking/red/green light states based on value thresholds.</li>
+                <li><strong>🧪 Sanitization Simulation:</strong> Collision triggers change tank materials to simulate cleaning.</li>
+                <li><strong>🎨 Material Switching:</strong> Time-based or socket-based material transitions reflect changing object states.</li>
+                <li><strong>🗣️ Yarn Commands:</strong> Dialogue-based activation/deactivation of GameObjects and systems using custom commands.</li>
+                <li><strong>🚶 NPC Movement:</strong> Waypoint navigation with auto dialogue and highlight logic linked to Yarn nodes.</li>
+            </ul>
+        </section>
+
+        <!-- DEV INSIGHTS -->
+        <section id="dev-insights" class="fade-in">
+            <h2>Development Insights</h2>
+            <p>
+                This project combined two different development approaches: Yarn was used by part of the team to build dialogue-driven scenes, while a custom onboarding system was developed independently for clarity and modularity.
+            </p>
+            <p>
+                The onboarding logic features automatic and manual step control, audio syncing, gear requirements, and debug-logged step execution to ensure smooth iteration and testability. The structure enables easy scenario branching and independent upgrades.
+            </p>
+        </section>
+
+        <!-- CONTACT -->
         <section id="contact" class="fade-in">
             <h2>Contact / Credits</h2>
             <p>
-                For more info, questions, or collaborations:<br>
-                <a href="mailto:your@email.com">your@email.com</a>
-            </p>
-            <p>
-                Project by [Your Name/Team].<br>
-                View source on <a href="https://github.com/your-repo-link" target="_blank">GitHub</a>.
+                <strong>Project:</strong> CSAR VR Training<br>
+                <strong>Developer (Onboarding & Website):</strong> [Your Name]<br>
+                <strong>GitHub Repositories:</strong><br>
+                - <a href="https://github.com/your-repo-1" target="_blank">Onboarding & Systems</a><br>
+                - <a href="https://github.com/your-repo-2" target="_blank">Scene Logic & Dialogue</a><br>
+                <strong>Team LinkedIn Profiles:</strong><br>
+                - <a href="https://linkedin.com/in/teammate1" target="_blank">Teammate 1</a><br>
+                - <a href="https://linkedin.com/in/teammate2" target="_blank">Teammate 2</a><br>
+                - <a href="https://linkedin.com/in/teammate3" target="_blank">Teammate 3</a><br>
+                <strong>Email:</strong> <a href="mailto:your@email.com">your@email.com</a><br>
+                <strong>Built for:</strong> CSAR - Centre for Sustainable Aquatic Research<br>
+                <strong>Institution:</strong> [Your University Name], VR Training Module 2024–2025
             </p>
         </section>
     </main>
@@ -86,7 +202,7 @@
         </svg>
     </div>
     <footer>
-        &copy; 2024 CSAR Project. All rights reserved.
+        &copy; 2025 CSAR VR Project. All rights reserved.
     </footer>
     <script src="script.js"></script>
 </body>
